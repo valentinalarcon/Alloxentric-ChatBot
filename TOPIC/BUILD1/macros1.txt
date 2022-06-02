@@ -1,0 +1,7 @@
+﻿^alloxentric o 0 0 A( ) $cs_token = 256 | 4194304 | 255 | 2048 | 24576 $cs_token -= 2048 | DO_SUBSTITUTE_SYSTEM | 24576 $cs_token = 0 $cs_language = spanish $cs_control_main = ~control $userprompt = ^"%user: >" $botprompt = ^"alloxentric: " `
+^testfn O 0 0 A( )  `
+^myfunc1 o 0 0 B( ^resp ) ^0 `
+^datalabel o 0 0 B( ^label ) ^join ( * ^0 %topic ~ ^getrule ( label %rule ) ) `
+^botlabeltask o 0 0 B( ^tarea ) ^join ( * tarea ~ ^0 $estado * ) `
+^humanlabeltask o 0 0 A( ) ^join ( + tarea ~ ^getrule ( label %rule ) ~tarea+ ) `
+^botlabelbase o 0 0 A( ) ^join ( * flujoBase %topic ~ ^getrule ( label %rule ) * ) `

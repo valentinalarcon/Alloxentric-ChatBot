@@ -1,0 +1,148 @@
+﻿topic: ~ustedEs keep repeat []
+
+
+t: (!$sp) $sp = 0 $incorr = null 
+$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  None
+        $x.intencionBot = CONSULTA_CONFIRMACION
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+
+
+Hola te estamos contactando de Eulen, nos confirmas que te podamos contactar por este medio? 
+
+u: () $x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  None
+        $x.intencionBot = CONSULTA_CONFIRMACION
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+Por favor responda Sí o No
+ 
+
+	a: CONFIRMA ( [ ~sic si sí sip sipi sisi claro por_supuesto sin_duda ] )
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  CONFIRMA
+        $x.intencionBot = CONSULTA_NOMBRE
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+	$sp = null $estado = ~consulta_rut 
+	
+
+	a: NO_CONFIRMA ( [ ~noc no nop nono ] )
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  NO_CONFIRMA
+        $x.intencionBot = FINALIZAR_CONVERSACION
+        $x.comandoAcanal = FINALIZAR_CONVERSACION
+        [^jsonwrite($x)]
+	$sp = null Entiendo, muchas gracias. ^respond(~adios)
+
+
+	a: MENSAJE_DESCONOCIDO (  ) 
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  MENSAJE_DESCONOCIDO
+        $x.intencionBot = CONSULTA_CONFIRMACION
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+	$estado = ~ustedEs
+
+	topic: ~consulta_nombre keep repeat []
+
+t: (!$sp) $sp = 0 $incorr = null 
+$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  None
+        $x.intencionBot = CONSULTA_RUT
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+
+
+Perfecto, para continuar con el proceso por favor indíqueme su nombre completo
+
+
+ 
+u: () $x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  None
+        $x.intencionBot = CONSULTA_RUT
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+		
+
+
+
+
+	a: INGRESA_NOMBRE (_*) 
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  INGRESA_NOMBRE
+        $x.intencionBot = CONSULTA_RUT
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+	$ncom = '_0 $estado = ~consulta_rut
+	
+
+
+topic: ~consulta_rut keep repeat ()
+
+ t:() $x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  None
+        $x.intencionBot = CONSULTA_RUT
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+
+
+ u:() $x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  None
+        $x.intencionBot = CONSULTA_RUT
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+        Por favor indíqueme su rut en el siguiente formato: 12345678-9
+
+a: (_*)  $x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  INGRESA_RUT
+        $x.intencionBot = CONSULTA_COMUNA
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+$rut = '_0 $v_rut = ^popen(^join( "python3 validador_rut.py " $rut ) '^myfunc1)  if ($v_rut < 1) { $vr = 1 El rut ingresado no es válido. $estado = ~consulta_rut  } else {$vr = null $sp = null $ivr = null  $estado = ~consulta_comuna}
+
+
+ topic: ~consulta_comuna keep repeat []
+
+t: (!$sp) $sp = 0 $incorr = null
+$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  None
+        $x.intencionBot = CONSULTA_COMUNA
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+
+
+Ahora indíqueme su región y comuna de residencia.
+
+
+
+u: () $x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  None
+        $x.intencionBot = CONSULTA_COMUNA
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+
+
+
+
+
+        a: INGRESA_COMUNA (_*)
+        $x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  INGRESA_COMUNA
+        $x.intencionBot = CONSULTA_EMAIL
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+        $estado = ~consulta_email
+
+
+
+
+topic: ~deriva keep repeat []
+
+u: () $x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  None
+        $x.intencionBot = DERIVA_AGENTE
+        $x.comandoAcanal = TRANSFERIR_CONVERSACION
+        [^jsonwrite($x)]
+Espere mientras lo derivamos

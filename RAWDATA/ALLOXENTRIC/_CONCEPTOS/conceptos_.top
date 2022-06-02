@@ -1,0 +1,21 @@
+﻿# ========= CONCEPTOS CON SINONIMOS =================
+
+
+concept: ~sic ( yes si sí sí_sí sí_sí_sí si_si si_si_si silla C claro por_supuesto así asi cicones ci cic prezi siri zi zic fitness se_habla )
+
+concept: ~noc (no no_no no_no_no nop monótono ANO no_lo_se no_se tampoco imposible )
+
+concept: ~afirmativo( correcto bueno_ya bueno claro por_supuesto así_es efectivo si si_si sí sí_sí ok okey efectivamente correctamente es_correcto tambén tambien afirmativo )
+
+#concept: ~no_es( )
+
+concept: ~soy_yo ( ese_soy_yo soy_yo yo_soy el_mismo con_ella con_ellas con_él con_el el_mismo él_mismo)
+
+concept: ~digame ( digame cuénteme qué_pasa qué_pasó ahora_que_pasó ahorita_que_pasó)
+
+#concept: ~conocido( esposo esposa hermano hermana primo prima compañero compañera marido hijo hija vecino vecina nana amigo amiga tio tia tío tía mama mamá papá papa madre padre pareja mujer)
+
+concept: ~operadora( señor señorita señora corazon corazón)
+
+#concept: ~actividad_ocupado ( trabajando comprando bañandose en_el_baño durmiendo viajando ocupado ocupada )
+
