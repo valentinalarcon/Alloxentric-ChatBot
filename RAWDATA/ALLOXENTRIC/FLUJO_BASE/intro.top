@@ -6,7 +6,7 @@ u: (%hour<12) $buendia = un_buen_día   $buenosdias = Buenos_Dias
 
 t: Intro ()
   $sp = null $ps = null   
-  $buenosdias estamos llamando de $empresa
+  $buenosdias 
     
    $estado = ~ustedEs
    
