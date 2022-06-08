@@ -1,0 +1,38 @@
+﻿Error opening binary write file DICT/ENGLISH/dict.bin: No such file or directory
+
+   in facts.txt at 0: 
+    Error opening binary write file DICT/ENGLISH/facts.bin: No such file or directory
+
+   in facts.txt at 0: 
+    myexit called with myexit called with   
+Error opening binary write file DICT/ENGLISH/dict.bin: No such file or directory
+
+   in facts.txt at 0: 
+    Error opening binary write file DICT/ENGLISH/facts.bin: No such file or directory
+
+   in facts.txt at 0: 
+    No computer id before user load?
+   in topic_test_anonymous.txt at 1: ^anonymous
+    No such directory No such file or directory
+
+0 Wed Mar 30 11:50:45 2022 in sentence:    :BUILD PLUS_SERVICIOS
+No such directory No such file or directory
+
+0 Wed Mar 30 11:50:45 2022 in sentence:    :BUILD PLUS_SERVICIOS
+Error opening binary write file DICT/ENGLISH/dict.bin: No such file or directory
+
+   in facts.txt at 0: 
+    Error opening binary write file DICT/ENGLISH/facts.bin: No such file or directory
+
+   in facts.txt at 0: 
+    No computer id before user load?
+   in topic_test_anonymous.txt at 0: ^anonymous
+    Error opening binary write file DICT/ENGLISH/dict.bin: No such file or directory
+
+   in facts.txt at 0: 
+    Error opening binary write file DICT/ENGLISH/facts.bin: No such file or directory
+
+   in facts.txt at 0: 
+    No computer id before user load?
+   in topic_a_anonymous.txt at 1: ^anonymous
+    
