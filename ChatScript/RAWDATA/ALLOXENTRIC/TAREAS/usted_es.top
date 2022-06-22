@@ -1,0 +1,176 @@
+﻿#T. USTEDES
+topic: ~ustedEs keep repeat []
+
+t: (!$sp) $sp = 0  $int = 0 $repet = 0
+$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  None
+        $x.intencionBot = CONSULTA_NOMBRE
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+
+
+Te estamos contactando de $EMPRESA 
+
+u: ($int) $x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  None
+        $x.intencionBot = CONSULTA_NOMBRE
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+Me comunico en este numero con $CLIENTE
+Por favor responda Sí o No
+
+	a: CONFIRMA ( [ ~sic si sí sip sipi sisi claro por_supuesto sin_duda ] )
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  CONFIRMA
+        $x.intencionBot = CONSULTA_NOMBRE
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+	$sp = null $estado = ~ofrecer_producto
+	
+	a: NO_CONFIRMA ( [ ~noc no nop nono ] )
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  NO_CONFIRMA
+        $x.intencionBot = CONSULTA_NOMBRE
+        $x.comandoAcanal = FINALIZAR_CONVERSACION
+        [^jsonwrite($x)]
+	$sp = null Disculpe las molestias, ^respond(~adios)
+
+        a: MENSAJE_DESCONOCIDO (  ) 
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  MENSAJE_DESCONOCIDO
+        $x.intencionBot = CONSULTA_NOMBRE
+        $x.comandoAcanal =  None
+        [^jsonwrite($x)]
+        $estado = ~ustedEs
+        $repet += 1 if($repet == 2){$int = null}
+        
+
+u: (!$int) $x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  None
+        $x.intencionBot = CONSULTA_NOMBRE
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+Disculpe, si usted es $CLIENTE
+Marque uno para confirmar o de lo contrario marque cero
+
+	a: CONFIRMA ( [ ~1] )
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  CONFIRMA
+        $x.intencionBot = CONSULTA_NOMBRE
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+	$sp = null $estado = ~ofrecer_producto
+	
+	a: NO_CONFIRMA ( [ ~0] )
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  NO_CONFIRMA
+        $x.intencionBot = CONSULTA_NOMBRE
+        $x.comandoAcanal = FINALIZAR_CONVERSACION
+        [^jsonwrite($x)]
+	$sp = null Disculpe las molestias, ^respond(~adios)
+
+        a: MENSAJE_DESCONOCIDO (  ) 
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  MENSAJE_DESCONOCIDO
+        $x.intencionBot = CONSULTA_NOMBRE
+        $x.comandoAcanal =  FINALIZAR_CONVERSACION
+        [^jsonwrite($x)]
+        $sp = null Disculpe las molestias, ^respond(~adios)
+        
+
+topic: ~ofrecer_producto keep repeat []
+t: (!$sp) $sp = 0 $repet = 0
+$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  None
+        $x.intencionBot = CONSULTA_PRODUCTO
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+
+Estamos contactandonos con usted para ofrecer $PRODUCTO
+
+u: ($int) $x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  None
+        $x.intencionBot = CCONSULTA_PRODUCTO
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+Esta interesado en adquirir el $PRODUCTO
+Por favor responda Sí o No
+
+	a: CONFIRMA ( [ ~sic si sí sip sipi sisi claro por_supuesto sin_duda ] )
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  CONFIRMA
+        $x.intencionBot = CONSULTA_PRODUCTO
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+	$sp = null $estado = ~deriva_ejecutivo
+	
+	a: NO_CONFIRMA ( [ ~noc no nop nono ] )
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  NO_CONFIRMA
+        $x.intencionBot = CONSULTA_PRODUCTO
+        $x.comandoAcanal = FINALIZAR_CONVERSACION
+        [^jsonwrite($x)]
+	$sp = null Disculpe las molestias, ^respond(~adios)
+
+        a: MENSAJE_DESCONOCIDO (  ) 
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  MENSAJE_DESCONOCIDO
+        $x.intencionBot = CONSULTA_CONFIRMACION
+        $x.comandoAcanal =  None
+        [^jsonwrite($x)]
+        $estado = ~ofrecer_producto
+        $repet += 1 if($repet == 2){$int = null}
+        
+
+u: (!$int) $x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  None
+        $x.intencionBot = CONSULTA_CONFIRMACION
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+Disculpe, Si está interesado en adquirir $PRODUCTO
+Marque uno para confirmar o de lo contrario marque cero
+
+	a: CONFIRMA ( [ ~1] )
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  CONFIRMA
+        $x.intencionBot = CONSULTA_NOMBRE
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+	$sp = null $estado = ~deriva_ejecutivo
+	
+	a: NO_CONFIRMA ( [ ~0] )
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  NO_CONFIRMA
+        $x.intencionBot = FINALIZAR_CONVERSACION
+        $x.comandoAcanal = FINALIZAR_CONVERSACION
+        [^jsonwrite($x)]
+	$sp = null Disculpe las molestias, ^respond(~adios)
+
+        a: MENSAJE_DESCONOCIDO (  ) 
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  MENSAJE_DESCONOCIDO
+        $x.intencionBot = FINALIZAR_CONVERSACION
+        $x.comandoAcanal =  FINALIZAR_CONVERSACION
+        [^jsonwrite($x)]
+        $sp = null Disculpe las molestias, ^respond(~adios)
+
+
+topic: ~deriva_ejecutivo keep repeat []
+
+t: (!$sp) $sp = 0 $repet = 0
+$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  None
+        $x.intencionBot = DERIVA_EJECUTIVO
+        $x.comandoAcanal = None
+        [^jsonwrite($x)]
+
+Perfecto, un ejecutivo tomará contacto con usted a la brevedad. 
+Muchas gracias por su tiempo
+
+        a: MENSAJE_DESCONOCIDO (  ) 
+	$x = ^jsoncreate(TRANSIENT object)
+        $x.intencionContacto =  MENSAJE_DESCONOCIDO
+        $x.intencionBot = DERIVA_EJECUTIVO
+        $x.comandoAcanal =  FINALIZAR_CONVERSACION
+        [^jsonwrite($x)]
+        $sp = null 

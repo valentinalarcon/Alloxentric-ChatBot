@@ -1,0 +1,38 @@
+﻿outputmacro: ^testfn variable ()
+# if ($__0 == %user ) {
+#
+#  $telefono = $__0
+#  $numdoc = $__1
+#  $campana = $__2
+#  $nombre = $__3
+#  $$user = True 
+#
+#}
+outputmacro: ^myfunc1(^resp)
+^resp
+
+
+topic: ~datos keep repeat ()
+
+
+u: (%hour>=12) $buendia = una_buena_tarde  $buenosdias = Buenas_Tardes
+
+u: (%hour<12) $buendia = un_buen_día   $buenosdias = Buenos_Dias
+
+
+u: () $data = ^jsonreadcsv(TAB RAWDATA/ALLOXENTRIC/_DATOS/datos.txt '^testfn )
+
+
+u: () $CLIENTE= $data
+
+u: () $telefono = $data.datos_contacto.TELEFONO
+
+u: () $empresa = $data.datos_contacto.EMPRESA
+
+u: () $producto = $data.datos_contacto.PRODUCTO
+
+u: () $tel = $data.datos_contacto.telcontacto
+
+
+
+u: () $anexo = ^join("#" $transfer "|" $rut "|" $remesa "|" $tel)
