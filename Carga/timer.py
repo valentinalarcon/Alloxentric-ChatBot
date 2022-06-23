@@ -10,7 +10,7 @@ def ejecutar():
     load_data(_directory,_data)
 
 
-schedule.every(1).minute.do(ejecutar)
+schedule.every(20).seconds.do(ejecutar)
 
 while True:
     schedule.run_pending()

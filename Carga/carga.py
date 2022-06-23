@@ -2,7 +2,9 @@ import pandas as pd
 import os 
 import time 
 import pathlib
+import csv
 from datetime import datetime
+from verify_utf8 import verify
 
 
 def date_time (fichero):
@@ -20,9 +22,6 @@ def mayor(time):
         if (hour > aux): aux = hour
     return aux
 
-def copy(fichero,_data):
-    dataset = pd.read_csv(fichero,sep=';')
-    dataset.to_csv(_data)
 
 def write_txt(text):
     f = open("date_carga.txt","w")
@@ -31,6 +30,11 @@ def write_txt(text):
 def zero(now_time):
     if(now_time == "00:00:00"): 
         f = open("date_carga.txt","w"); f.close()
+
+def copy(fichero,_data):
+    dataset = pd.read_csv(fichero,sep=';')
+    dataset.to_csv(_data, sep=" ")
+    verify(fichero)
 
 def load_data(_directory, _data):
     #ruta donde se encuentra la carpeta de los archivos csv
@@ -41,6 +45,7 @@ def load_data(_directory, _data):
     zero(now_time)
 
     ficheros = []; time = []
+  
 
     #hora y fecha de todos los archivos dentro de la carpeta
     for fichero in directory.iterdir():
@@ -49,17 +54,17 @@ def load_data(_directory, _data):
             ficheros.append(fichero)
             time.append(T_time)
     
-
     lst_m = mayor(time) #ultima modificacion
+
     if os.stat("date_carga.txt").st_size == 0:
         write_txt(lst_m)
-        copy(ficheros[time.index(lst_m)],_data)
+        copy((ficheros[time.index(lst_m)]),_data)
 
     else: 
         f = open("date_carga.txt"); date_carga = f.readline()
         if(lst_m > date_carga):
             write_txt(lst_m)
-            copy(ficheros[time.index(lst_m)],_data)
+            copy((ficheros[time.index(lst_m)]),_data)
 
 
 
