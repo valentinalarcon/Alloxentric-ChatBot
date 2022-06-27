@@ -23,16 +23,15 @@ u: (%hour<12) $buendia = un_buen_día   $buenosdias = Buenos_Dias
 u: () $data = ^jsonreadcsv(TAB RAWDATA/ALLOXENTRIC/_DATOS/datos.txt '^testfn )
 
 
-u: () $CLIENTE= $data
+u: () $CLIENTE= 
 
-u: () $telefono = $data.datos_contacto.TELEFONO
+u: () $telefono = 
 
-u: () $empresa = $data.datos_contacto.EMPRESA
+u: () $empresa = 
 
-u: () $producto = $data.datos_contacto.PRODUCTO
-
-u: () $tel = $data.datos_contacto.telcontacto
+u: () $producto = 
 
 
 
-u: () $anexo = ^join("#" $transfer "|" $rut "|" $remesa "|" $tel)
+
+#u: () $anexo = ^join("#" $transfer "|" $rut "|" $remesa "|" $tel)
