@@ -1,0 +1,1 @@
+Bot generico para ventas, realizado en ChatScript.
